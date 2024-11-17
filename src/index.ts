@@ -7,6 +7,7 @@ import path from 'path';
 import { authenticateUserWithPassword } from './services/authLogin';
 import { registerUserSchema, editUserSchema, deleteUserSchema, saveNoteSchema } from './validator';
 import { validateRequest } from './middleware/validateRequest';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 // Create an Express app
@@ -14,6 +15,15 @@ const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
+
+const limiter = rateLimit({
+    windowMs: 24 * 60 * 60 * 1000,
+    max: 100, 
+    message: 'Too many requests from this IP, please try again tomorrow.', 
+});
+
+
+app.use(limiter);
 
 app.get('/', (req : Request, res : Response) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
