@@ -116,7 +116,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
 
 ### Authenticated Tasks (Requires Authentication)
 
-- **POST** `/api/notes`: Create a new note  
+- **POST** `https://instaconnect-3b72c.web.app/api/notes`: Create a new note  
     Steps to create a note:
     1. Login and get the token from the login API.
     2. Go to the Authorization tab in Postman and select **Bearer Token**.
@@ -131,7 +131,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
 
     ![Save Notes](public/images/save_notes.png)
 
-- **GET** `/api/notes`: Retrieve notes  
+- **GET** `https://instaconnect-3b72c.web.app/api/notes`: Retrieve notes  
     Steps to retrieve notes:
     1. Login and get the token from the login API.
     2. Go to the Authorization tab in Postman and select **Bearer Token**.
