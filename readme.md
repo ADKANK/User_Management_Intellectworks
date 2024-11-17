@@ -107,7 +107,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
 
 - **DELETE** `https://instaconnect-3b72c.web.app/api/delete/:id`: Delete user account  
     Steps to delete a user:
-    1. **POST** `https://instaconnect-3b72c.web.app/api/login`: First, login and get the token.
+    1. **POST** `https://instaconnect-3b72c.web.app/api/login`: First, login ,get the token and also the id.
     2. Go to the **Authorization** tab in Postman and select **Bearer Token**.
     3. Paste the token into the Bearer Token field.
     4. Send the **DELETE** request
