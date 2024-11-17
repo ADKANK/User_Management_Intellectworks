@@ -104,7 +104,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
     ![User Login](public/images/user_login.png)
 
 - **PUT** `https://instaconnect-3b72c.web.app/api/edit`: Edit user details (At least one field required)  
-    1. **POST** `https://instaconnect-3b72c.web.app/api/login`: First, login ,get the token and also the id.
+    1. **POST** `https://instaconnect-3b72c.web.app/api/login`: First, login ,get the token.
     2. Go to the **Authorization** tab in Postman and select **Bearer Token**.
     3. Paste the token into the Bearer Token field.
     4. Send the **Edit** request
