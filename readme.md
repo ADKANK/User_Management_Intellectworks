@@ -82,7 +82,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
     }
     ```
 
-    ![User Registration](public/User_Registration.png)
+    ![User Registration](public/images/User_Registration.png)
 
 - **POST** `https://instaconnect-3b72c.web.app/api/login`: User login  
     Request Body:
@@ -93,7 +93,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
     }
     ```
 
-    ![User Login](public/user_login.png)
+    ![User Login](public/images/user_login.png)
 
 - **PATCH** `https://instaconnect-3b72c.web.app/api/edit`: Edit user details (At least one field required)  
     Request Body:
@@ -112,7 +112,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
     3. Paste the token into the Bearer Token field.
     4. Send the **DELETE** request
 
-    ![Delete User](public/delete_user.png)
+    ![Delete User](public/images/delete_user.png)
 
 ### Authenticated Tasks (Requires Authentication)
 
@@ -129,7 +129,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
     }
     ```
 
-    ![Save Notes](public/save_notes.png)
+    ![Save Notes](public/images/save_notes.png)
 
 - **GET** `/api/notes`: Retrieve notes  
     Steps to retrieve notes:
@@ -138,7 +138,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
     3. Paste the token.
     4. Send the GET request to [https://instaconnect-3b72c.web.app/api/notes](https://instaconnect-3b72c.web.app/api/notes)
 
-    ![Get Notes](public/get_notes.png)
+    ![Get Notes](public/images/get_notes.png)
 
 
 ### Validation Schemas
