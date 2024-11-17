@@ -2,7 +2,7 @@
 
 This is a Node.js application built with TypeScript using Express for API endpoints, Firebase for authentication, and Firestore for data storage. The application includes user management and notes management functionalities for authenticated users.
 
-- Live API URL :  https://us-central1-instaconnect-3b72c.cloudfunctions.net/app
+- Live API URL :  https://instaconnect-3b72c.web.app/
 
 ## Table of Contents
 
@@ -36,7 +36,7 @@ This is a Node.js application built with TypeScript using Express for API endpoi
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
+- Node.js (v18.x)
 - Firebase CLI
 - Firebase Project
 
