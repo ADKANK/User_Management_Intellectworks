@@ -2,6 +2,8 @@
 
 This is a Node.js application built with TypeScript using Express for API endpoints, Firebase for authentication, and Firestore for data storage. The application includes user management and notes management functionalities for authenticated users.
 
+- Live API URL :  https://us-central1-instaconnect-3b72c.cloudfunctions.net/app
+
 ## Table of Contents
 
 - [Features](#features)
@@ -62,19 +64,82 @@ This is a Node.js application built with TypeScript using Express for API endpoi
 ### Environment Variables
 
 1. Create a .env file in the root directory and add the following variables:
-
+    ```bash
     WEB_API_KEY="your_FIREBASE_WEB_API_KEY"
+    ```
 
-### API Endpoints
+## API Endpoints
 
-   - User Management
-        - POST /api/register - Register a new user
-        - POST /api/login - User login
-        - PATCH /api/edit - Edit user details
-        - DELETE /api/delete - Delete user account
-    - Notes Management (Authenticated Users Only)
-        - POST /api/notes - Save a new note for the authenticated user
-        - GET /api/notes - Retrieve all notes for the authenticated user
+### User Management
+
+- **POST** `https://instaconnect-3b72c.web.app/api/register`: Register a new user  
+    Request Body:
+    ```json
+    {
+        "name":"someName",
+        "email":"someName@someName.com",
+        "password":"someNamePassword"
+    }
+    ```
+
+    ![User Registration](public/User_Registration.png)
+
+- **POST** `https://instaconnect-3b72c.web.app/api/login`: User login  
+    Request Body:
+    ```json
+    {
+        "email":"someName@someName.com",
+        "password":"someNamePassword"
+    }
+    ```
+
+    ![User Login](public/user_login.png)
+
+- **PATCH** `https://instaconnect-3b72c.web.app/api/edit`: Edit user details (At least one field required)  
+    Request Body:
+    ```json
+    {
+        "name" : "someName",
+        "email":"someName@someName.com",
+        "password":"someNamePassword"
+    }
+    ```
+
+- **DELETE** `https://instaconnect-3b72c.web.app/api/delete/:id`: Delete user account  
+    Steps to delete a user:
+    1. **POST** `https://instaconnect-3b72c.web.app/api/login`: First, login and get the token.
+    2. Go to the **Authorization** tab in Postman and select **Bearer Token**.
+    3. Paste the token into the Bearer Token field.
+    4. Send the **DELETE** request
+
+    ![Delete User](public/delete_user.png)
+
+### Authenticated Tasks (Requires Authentication)
+
+- **POST** `/api/notes`: Create a new note  
+    Steps to create a note:
+    1. Login and get the token from the login API.
+    2. Go to the Authorization tab in Postman and select **Bearer Token**.
+    3. Paste the token.
+    4. Request Body:
+    ```json
+    {
+        "title" : "someTitle",
+        "content":"someContent"
+    }
+    ```
+
+    ![Save Notes](public/save_notes.png)
+
+- **GET** `/api/notes`: Retrieve notes  
+    Steps to retrieve notes:
+    1. Login and get the token from the login API.
+    2. Go to the Authorization tab in Postman and select **Bearer Token**.
+    3. Paste the token.
+    4. Send the GET request to [https://instaconnect-3b72c.web.app/api/notes](https://instaconnect-3b72c.web.app/api/notes)
+
+    ![Get Notes](public/get_notes.png)
+
 
 ### Validation Schemas
     This project uses Joi for input validation to ensure the incoming request data is formatted correctly. Below are the instructions for the validation schemas used in the application:
@@ -87,53 +152,53 @@ This is a Node.js application built with TypeScript using Express for API endpoi
 
 - User Edit (editUserSchema)
 
- - Validates the data for editing a user's email and/or name fields.
- - Either the email or the name field must be provided for editing.
- - If provided, email must be a valid email and name must be at least 2 characters long.
+    - Validates the data for editing a user's email and/or name fields.
+    - Either the email or the name field must be provided for editing.
+    - If provided, email must be a valid email and name must be at least 2 characters long.
 
 - User Deletion (deleteUserSchema)
 
- - Validates that the userId is provided when deleting a user.
- - The userId field must be a string and is required for deletion.
+    - Validates that the userId is provided when deleting a user.
+    - The userId field must be a string and is required for deletion.
 
 - Save Note (saveNoteSchema)
 
- - Validates the data for creating a new note.
- - The title and content fields must be at least 1 character long and are required.
- - These schemas help ensure the data integrity and user experience by providing clear error messages when invalid data is received.
+    - Validates the data for creating a new note.
+    - The title and content fields must be at least 1 character long and are required.
+    - These schemas help ensure the data integrity and user experience by providing clear error messages when invalid data is received.
 
 
 ### Folder Structure
 
-/src
-  /lib                           #Compiled JavaScript files after TypeScript compilation
-  /controllers
+- src
+  - /lib                           #Compiled JavaScript files after TypeScript compilation
+  - /controllers
     - userController.ts          # User management logic (register, login, edit, delete)
     - notesController.ts         # Notes management logic (create, retrieve)
-  /middleware
+  - /middleware
     - validateRequest.ts         # Middleware for validating request data
-  /services
+  - /services
     - authLogin.ts               # Service for handling Firebase login and generating tokens
-  /validators.ts                 # Validation schema for user registration,edit user,user deletion, saving notes
+  - /validators.ts                 # Validation schema for user registration,edit user,user deletion, saving notes
   - index.ts                     # Main file to start the application and define API routes
-  .env                           # Environment variables (API key)
-  package.json                   # Project dependencies and scripts
-  tsconfig.json                  # TypeScript configuration
-  firebase.json                  # Firebase project configuration
-  .gitignore                     # Files to ignore in version control
+  - .env                           # Environment variables (API key)
+  - package.json                   # Project dependencies and scripts
+  - tsconfig.json                  # TypeScript configuration
+  - firebase.json                  # Firebase project configuration
+  - .gitignore                     # Files to ignore in version control
 
 
 ### Deployment
-- This project is deployed using Firebase Cloud Functions.
+This project is deployed using Firebase Cloud Functions.
 
 - Deploy to Firebase
- - To deploy the functions to Firebase, follow these steps:
+    - To deploy the functions to Firebase, follow these steps:
 
-- Make sure you are logged into Firebase CLI:
-```bash
-     firebase login
-     firebase deploy --only functions
-```
+    - Make sure you are logged into Firebase CLI:
+    ```bash
+        firebase login
+        firebase deploy --only functions
+    ```
 
 ### After deploying, your application will be live on Firebase Cloud Functions.
 
