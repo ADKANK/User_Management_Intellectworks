@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        code {
+            font-size: 1.1em;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>API Documentation</h1>
+    <p>Welcome to the API. Below are the available routes and their usage.</p>
+</header>
+
+<section>
+    <h2>User Management</h2>
+    <ul>
+        <li>
+            <h3>POST /api/register</h3>
+            <p>Register a new user.</p>
+        </li>
+        <li>
+            <h3>POST /api/login</h3>
+            <p>User login.</p>
+        </li>
+        <li>
+            <h3>PUT /api/edit</h3>
+            <p>Edit user details.</p>
+        </li>
+        <li>
+            <h3>DELETE /api/delete</h3>
+            <p>Delete the user account.</p>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Notes Management (Requires Authentication)</h2>
+    <ul>
+        <li>
+            <h3>POST /api/notes</h3>
+            <p>Create a new note for the authenticated user.</p>
+        </li>
+        <li>
+            <h3>GET /api/notes</h3>
+            <p>Retrieve all notes for the authenticated user.</p>
+        </li>
+    </ul>
+</section>
+
+</body>
+</html>

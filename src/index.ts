@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import { saveNote, getNotes } from './controllers/notesController';
 import dotenv from 'dotenv';
 import { deleteUser, editUser, registerUser } from './controllers/authController';
+import path from 'path';
 import { authenticateUserWithPassword } from './services/authLogin';
 import { registerUserSchema, editUserSchema, deleteUserSchema, saveNoteSchema } from './validator';
 import { validateRequest } from './middleware/validateRequest';
@@ -13,7 +14,10 @@ const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
-const PORT = process.env.PORT || 6001;
+
+app.get('/', (req : Request, res : Response) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Define routes for User Management
 app.post('/api/register', validateRequest(registerUserSchema), registerUser);
