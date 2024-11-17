@@ -68,6 +68,14 @@ This is a Node.js application built with TypeScript using Express for API endpoi
     WEB_API_KEY="your_FIREBASE_WEB_API_KEY"
     ```
 
+- **Using Firebase Firestore Database**
+    - Inside the Database, there are two collections: `users` and `notes`
+        - **users**: 
+            - `{ "name": "someName", "email": "someName@someName.com", "password": "someNamePassword" }`
+        - **notes**: 
+            - `{ "title": "someTitle", "content": "someContent" }`
+
+
 ## API Endpoints
 
 ### User Management
