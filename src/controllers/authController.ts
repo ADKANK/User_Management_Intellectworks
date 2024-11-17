@@ -64,6 +64,7 @@ export const editUser = async (req: express.Request, res: express.Response): Pro
 
 export const deleteUser = async (req: express.Request, res: express.Response): Promise<void> => {
   const token = req.headers['authorization']?.split('Bearer ')[1];
+  const { userId } = req.params; 
 
   if (!token) {
     res.status(401).json({ message: 'Authentication token required' });
@@ -73,7 +74,8 @@ export const deleteUser = async (req: express.Request, res: express.Response): P
   try {
     const decodedToken = await auth.verifyIdToken(token);
 
-    if (decodedToken.uid !== req.body.userId) {
+    // Check if the authenticated user is trying to delete their own account
+    if (decodedToken.uid !== userId) {
       res.status(403).json({ message: 'You can only delete your own account' });
       return;
     }
@@ -84,8 +86,11 @@ export const deleteUser = async (req: express.Request, res: express.Response): P
       res.status(404).json({ message: 'User not found' });
       return;
     }
+
+    // Delete user data from Firestore and Firebase Authentication
     await db.collection('users').doc(decodedToken.uid).delete();
     await auth.deleteUser(decodedToken.uid);
+
     res.status(200).json({ message: 'User deleted successfully' });
 
   } catch (error: any) {
@@ -98,3 +103,4 @@ export const deleteUser = async (req: express.Request, res: express.Response): P
     res.status(500).json({ message: 'Error deleting user', error: error.message });
   }
 }
+

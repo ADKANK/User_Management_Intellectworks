@@ -23,7 +23,7 @@ app.get('/', (req : Request, res : Response) => {
 app.post('/api/register', validateRequest(registerUserSchema), registerUser);
 app.post('/api/login',  authenticateUserWithPassword);
 app.put('/api/edit', validateRequest(editUserSchema), editUser);
-app.delete('/api/delete', validateRequest(deleteUserSchema), deleteUser);
+app.delete('/api/delete/:userId', validateRequest(deleteUserSchema), deleteUser);
 
 // Define routes for Notes Management
 app.post('/api/notes', validateRequest(saveNoteSchema), saveNote);
